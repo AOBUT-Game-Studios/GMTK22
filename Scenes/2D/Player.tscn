@@ -21,7 +21,6 @@ shape = SubResource( 1 )
 texture = ExtResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-current = true
 zoom = Vector2( 2, 2 )
 process_mode = 0
 drag_margin_h_enabled = true
@@ -43,4 +42,4 @@ scale = Vector2( 8, 8 )
 shape = SubResource( 2 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_dice_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_dice_exit"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_dice_exited"]
