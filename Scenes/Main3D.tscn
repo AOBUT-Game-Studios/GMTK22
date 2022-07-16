@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scenes/Player3d.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Dice3d.gd" type="Script" id=2]
+
+[sub_resource type="SphereShape" id=4]
+
+[sub_resource type="BoxShape" id=5]
+
+[sub_resource type="PhysicsMaterial" id=3]
+friction = 0.6
+bounce = 0.8
+absorbent = true
+
+[sub_resource type="BoxShape" id=2]
+
+[node name="Main3D" type="Spatial"]
+
+[node name="Player3d" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.5958 )
+speed = 50.0
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.767814, 0.640673, 0, -0.640673, 0.767814, 0, 6.17685, 8.0958 )
+current = true
+
+[node name="Dice3d" type="RigidBody" parent="." groups=["Dice"]]
+collision_layer = 2
+collision_mask = 2
+mode = 3
+gravity_scale = 0.0
+linear_damp = 0.4
+angular_damp = 0.7
+script = ExtResource( 2 )
+throw_magnitude = 100
+
+[node name="sphere" type="CollisionShape" parent="Dice3d"]
+shape = SubResource( 4 )
+
+[node name="cube" type="CollisionShape" parent="Dice3d"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
+shape = SubResource( 5 )
+
+[node name="StaticBody" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0 )
+collision_layer = 3
+collision_mask = 3
+physics_material_override = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0 )
+shape = SubResource( 2 )
