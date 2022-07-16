@@ -9,8 +9,9 @@ extents = Vector2( 29.5, 27.5 )
 [sub_resource type="CircleShape2D" id=2]
 
 [node name="Player" type="KinematicBody2D"]
+scale = Vector2( 0.25, 0.25 )
 script = ExtResource( 1 )
-speed = 1000.0
+speed = 200.0
 movement_damp = 5.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -21,6 +22,7 @@ shape = SubResource( 1 )
 texture = ExtResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 zoom = Vector2( 2, 2 )
 process_mode = 0
 drag_margin_h_enabled = true

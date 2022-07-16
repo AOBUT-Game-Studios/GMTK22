@@ -3,8 +3,8 @@
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Dice.gd" type="Script" id=2]
 
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 31, 30.5 )
+[sub_resource type="CircleShape2D" id=1]
+radius = 30.0
 
 [node name="Dice" type="RigidBody2D" groups=["Dice"]]
 collision_layer = 2
@@ -14,13 +14,15 @@ contact_monitor = true
 linear_damp = 1.0
 angular_damp = 1.0
 script = ExtResource( 2 )
-throw_magnitude = 3500.0
+throw_magnitude = 500.0
 throw_cooldown_def = 0.75
-dice_stopping_speed = 300
+dice_stopping_speed = 50
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 0.5 )
-shape = SubResource( 3 )
+scale = Vector2( 0.25, 0.25 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 1 )
