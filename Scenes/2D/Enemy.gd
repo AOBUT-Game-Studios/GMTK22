@@ -47,3 +47,11 @@ func attack_init():
 func wander():
 	var player_vector = (player.global_position - global_position).normalized()
 	velocity = (player_vector + (player_vector.rotated(90) * wander_direction)).normalized() * wander_speed
+
+func death():
+	queue_free()
+	print("death")
+
+func _on_Hitbox_body_entered(body):
+	if body.name == "Player":
+		body.take_damage(1)

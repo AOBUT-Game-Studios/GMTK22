@@ -39,8 +39,7 @@ func _physics_process(delta):
 		dice_roll()
 		linear_damp = 1
 
-func _on_Area2D_mouse_entered():
-	attractable = true
-
-func _on_Area2D_mouse_exited():
-	attractable = false
+func _on_Hitbox_body_entered(body):
+	print(rolling)
+	if body.is_in_group("enemy") and rolling:
+		body.death()

@@ -4,10 +4,14 @@ onready var Dice = preload("res://Scenes/2D/Dice.tscn")
 
 export (float) var speed = 100
 export (float) var movement_damp = 10
+export (int) var life_points = 3
 
 var active_die = null
 var velocity = Vector2()
 var stored_die = null
+export (bool) var invincible = false
+
+onready var anim = $AnimationPlayer
 
 func _unhandled_input(event):
 	pass
@@ -45,6 +49,17 @@ func get_input():
 func _physics_process(delta):
 	velocity = ((velocity / movement_damp) * (movement_damp - 1)) + (get_input() / movement_damp)
 	move_and_slide(velocity) 
+	
+func take_damage(damage):
+	if !invincible:
+		life_points -= damage
+		anim.play("Invincibility")
+		
+	if life_points <= 0:
+		game_over()
+	
+func game_over():
+	print("Dead")
 
 func _on_dice_entered(body):
 	if body.is_in_group("Dice"):
