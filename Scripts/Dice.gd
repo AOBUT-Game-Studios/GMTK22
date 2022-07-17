@@ -40,6 +40,5 @@ func _physics_process(delta):
 		linear_damp = 1
 
 func _on_Hitbox_body_entered(body):
-	print(rolling)
 	if body.is_in_group("enemy") and rolling:
 		body.death()
