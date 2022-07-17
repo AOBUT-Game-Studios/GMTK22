@@ -13,7 +13,6 @@ radius = 23.0217
 [sub_resource type="Animation" id=4]
 resource_name = "Combo"
 length = 2.5
-loop = true
 step = 0.0416667
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:scale")
@@ -167,7 +166,6 @@ tracks/1/keys = {
 }
 
 [node name="Player" type="KinematicBody2D"]
-scale = Vector2( 1.46926, 1.46926 )
 script = ExtResource( 1 )
 speed = 200.0
 movement_damp = 5.0
@@ -210,14 +208,13 @@ anims/RESET = SubResource( 5 )
 [node name="ComboDice" type="Node2D" parent="."]
 
 [node name="ComboDie" type="Sprite" parent="ComboDice"]
-position = Vector2( 40, -20 )
+scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 3 )
 hframes = 3
 vframes = 6
 
 [node name="ComboDie2" type="Sprite" parent="ComboDice"]
-position = Vector2( -39.2537, -19.6269 )
-scale = Vector2( 0.986008, 0.986008 )
+scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 3 )
 hframes = 3
 vframes = 6
