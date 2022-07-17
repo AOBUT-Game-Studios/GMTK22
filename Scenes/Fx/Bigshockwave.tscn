@@ -6,6 +6,7 @@
 
 [sub_resource type="Animation" id=1]
 resource_name = "BigImpact"
+length = 0.5
 step = 0.0416667
 tracks/0/type = "value"
 tracks/0/path = NodePath("shockwave64:scale")
@@ -38,6 +39,7 @@ tracks/1/keys = {
 anims/BigImpact = SubResource( 1 )
 
 [node name="shockwave64" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0 )
 scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 1 )
 

@@ -1,10 +1,10 @@
-[gd_scene load_steps=59 format=2]
+[gd_scene load_steps=70 format=2]
 
 [ext_resource path="res://Assets/tilemapppp.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/2D/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/2D/Dice.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/2D/Enemy.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Assets/leftbosshand.png" type="Texture" id=5]
+[ext_resource path="res://Assets/leftbosshand.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/2D/EnemyRanged.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/Rightbosshand.png" type="Texture" id=6]
 [ext_resource path="res://Assets/bossman.png" type="Texture" id=7]
 [ext_resource path="res://Assets/boss iris.png" type="Texture" id=8]
@@ -13,10 +13,13 @@
 [ext_resource path="res://Assets/bosseye.png" type="Texture" id=11]
 [ext_resource path="res://Assets/eyemask.png" type="Texture" id=12]
 [ext_resource path="res://Scenes/2D/Main.gd" type="Script" id=13]
-[ext_resource path="res://Assets/lefthandsattack.png" type="Texture" id=14]
+[ext_resource path="res://Assets/lefthandsattackbigg.png" type="Texture" id=14]
 [ext_resource path="res://Assets/redbeam.png" type="Texture" id=15]
 [ext_resource path="res://Scenes/2D/Laser.gd" type="Script" id=16]
 [ext_resource path="res://Scenes/2D/Right.gd" type="Script" id=17]
+[ext_resource path="res://Assets/FX assets/circle32.png" type="Texture" id=18]
+[ext_resource path="res://Scenes/Fx/Bigshockwave.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Assets/backgroundddd.png" type="Texture" id=20]
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -526,11 +529,11 @@ region = Rect2( 336, 0, 112, 96 )
 
 [sub_resource type="AtlasTexture" id=46]
 atlas = ExtResource( 14 )
-region = Rect2( 0, 0, 82, 97 )
+region = Rect2( 0, 0, 105, 129 )
 
 [sub_resource type="AtlasTexture" id=47]
 atlas = ExtResource( 14 )
-region = Rect2( 82, 0, 82, 97 )
+region = Rect2( 105, 0, 105, 129 )
 
 [sub_resource type="SpriteFrames" id=25]
 animations = [ {
@@ -545,8 +548,185 @@ animations = [ {
 "speed": 2.0
 } ]
 
+[sub_resource type="Animation" id=55]
+resource_name = "Laser Sweep L"
+length = 8.0
+step = 0.5
+tracks/0/type = "method"
+tracks/0/path = NodePath("Right")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 7, 7.5, 8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "raise_hand"
+}, {
+"args": [ -200, 0.5 ],
+"method": "raised_align"
+}, {
+"args": [  ],
+"method": "raised_fire_laser"
+}, {
+"args": [ 0, 3.0 ],
+"method": "raised_align"
+}, {
+"args": [  ],
+"method": "raised_disable_laser"
+}, {
+"args": [  ],
+"method": "raise_origin_align"
+}, {
+"args": [  ],
+"method": "lower_hand"
+} ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Right:idle")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=53]
+resource_name = "Rapid Fire Laser LR"
+length = 6.0
+step = 0.5
+tracks/0/type = "method"
+tracks/0/path = NodePath("Right")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5.5, 6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "raise_hand"
+}, {
+"args": [ -100, 0.5 ],
+"method": "raised_align"
+}, {
+"args": [  ],
+"method": "raised_fire_laser"
+}, {
+"args": [  ],
+"method": "raised_disable_laser"
+}, {
+"args": [ 0, 0.5 ],
+"method": "raised_align"
+}, {
+"args": [  ],
+"method": "raised_fire_laser"
+}, {
+"args": [  ],
+"method": "raised_disable_laser"
+}, {
+"args": [ 100, 0.5 ],
+"method": "raised_align"
+}, {
+"args": [  ],
+"method": "raised_fire_laser"
+}, {
+"args": [  ],
+"method": "raised_disable_laser"
+}, {
+"args": [  ],
+"method": "raise_origin_align"
+}, {
+"args": [  ],
+"method": "lower_hand"
+} ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Right:idle")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=54]
+resource_name = "Rapid Fire Laser RL"
+length = 6.0
+step = 0.5
+tracks/0/type = "method"
+tracks/0/path = NodePath("Right")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5.5, 6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "raise_hand"
+}, {
+"args": [ 100, 0.5 ],
+"method": "raised_align"
+}, {
+"args": [  ],
+"method": "raised_fire_laser"
+}, {
+"args": [  ],
+"method": "raised_disable_laser"
+}, {
+"args": [ 0, 0.5 ],
+"method": "raised_align"
+}, {
+"args": [  ],
+"method": "raised_fire_laser"
+}, {
+"args": [  ],
+"method": "raised_disable_laser"
+}, {
+"args": [ -100, 0.5 ],
+"method": "raised_align"
+}, {
+"args": [  ],
+"method": "raised_fire_laser"
+}, {
+"args": [  ],
+"method": "raised_disable_laser"
+}, {
+"args": [  ],
+"method": "raise_origin_align"
+}, {
+"args": [  ],
+"method": "lower_hand"
+} ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Right:idle")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
 [sub_resource type="Animation" id=43]
-resource_name = "Rapid Fire Laser"
+resource_name = "Rapid Fire Laser Track"
 length = 8.0
 step = 0.5
 tracks/0/type = "method"
@@ -621,6 +801,35 @@ tracks/2/keys = {
 "values": [  ]
 }
 
+[sub_resource type="Curve" id=48]
+min_value = -200.0
+max_value = 200.0
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, -200 ), 202.092, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=49]
+curve = SubResource( 48 )
+
+[sub_resource type="Curve" id=50]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.848131, 0.960123 ), -0.243126, -0.243126, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=51]
+curve = SubResource( 50 )
+
+[sub_resource type="ParticlesMaterial" id=52]
+lifetime_randomness = 0.35
+emission_shape = 1
+emission_sphere_radius = 520.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = -500.0
+radial_accel_random = 0.26
+radial_accel_curve = SubResource( 49 )
+scale_random = 0.63
+scale_curve = SubResource( 51 )
+
 [sub_resource type="Curve" id=44]
 _data = [ Vector2( 0, 0.272727 ), 0.0, 0.0, 0, 0, Vector2( 0.824561, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.290909 ), -10.7782, 0.0, 0, 0 ]
 
@@ -679,19 +888,19 @@ orbit_velocity_random = 0.0
 extents = Vector2( 20, 81.5 )
 
 [sub_resource type="AtlasTexture" id=26]
-atlas = ExtResource( 5 )
+atlas = ExtResource( 4 )
 region = Rect2( 0, 0, 105, 144 )
 
 [sub_resource type="AtlasTexture" id=27]
-atlas = ExtResource( 5 )
+atlas = ExtResource( 4 )
 region = Rect2( 105, 0, 105, 144 )
 
 [sub_resource type="AtlasTexture" id=28]
-atlas = ExtResource( 5 )
+atlas = ExtResource( 4 )
 region = Rect2( 210, 0, 105, 144 )
 
 [sub_resource type="AtlasTexture" id=29]
-atlas = ExtResource( 5 )
+atlas = ExtResource( 4 )
 region = Rect2( 315, 0, 105, 144 )
 
 [sub_resource type="SpriteFrames" id=30]
@@ -704,6 +913,11 @@ animations = [ {
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 13 )
+
+[node name="Backgroundddd" type="Sprite" parent="."]
+position = Vector2( 27, -7 )
+z_index = -2
+texture = ExtResource( 20 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
@@ -720,10 +934,10 @@ position = Vector2( 86, 12 )
 [node name="Dice2" parent="." instance=ExtResource( 3 )]
 position = Vector2( -78, 13 )
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
+[node name="EnemyRanged" parent="." instance=ExtResource( 5 )]
+position = Vector2( 123, 42 )
 
-[node name="Enemy" parent="." instance=ExtResource( 4 )]
-position = Vector2( -129, -22 )
+[node name="Player" parent="." instance=ExtResource( 2 )]
 
 [node name="TileMap2" type="TileMap" parent="."]
 tile_set = SubResource( 17 )
@@ -762,18 +976,31 @@ texture = ExtResource( 12 )
 [node name="Right" type="AnimatedSprite" parent="Boss"]
 position = Vector2( -113, -78 )
 frames = SubResource( 25 )
+frame = 1
 playing = true
 script = ExtResource( 17 )
 idle = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Boss/Right"]
 root_node = NodePath("../..")
-"anims/Rapid Fire Laser" = SubResource( 43 )
+"anims/Laser Sweep L" = SubResource( 55 )
+"anims/Rapid Fire Laser LR" = SubResource( 53 )
+"anims/Rapid Fire Laser RL" = SubResource( 54 )
+"anims/Rapid Fire Laser Track" = SubResource( 43 )
 
 [node name="Tween" type="Tween" parent="Boss/Right"]
 
+[node name="Charging" type="Particles2D" parent="Boss/Right"]
+position = Vector2( 2, 32 )
+scale = Vector2( 0.1, 0.1 )
+emitting = false
+amount = 30
+speed_scale = 2.0
+process_material = SubResource( 52 )
+texture = ExtResource( 18 )
+
 [node name="Laser" type="Node2D" parent="Boss/Right"]
-position = Vector2( 4, 34 )
+position = Vector2( 1, 41 )
 z_index = 1
 script = ExtResource( 16 )
 
@@ -812,10 +1039,14 @@ monitoring = false
 position = Vector2( 0, 61 )
 shape = SubResource( 42 )
 
+[node name="Bigshockwave" parent="Boss/Right" instance=ExtResource( 19 )]
+position = Vector2( 1, 32 )
+
 [node name="Left" type="AnimatedSprite" parent="Boss"]
 position = Vector2( 193, 19 )
 rotation = -0.207712
 frames = SubResource( 30 )
+frame = 2
 playing = true
 
 [node name="Spawners" type="Node2D" parent="."]
@@ -843,7 +1074,6 @@ position = Vector2( 145, 82 )
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 5.0
-autostart = true
 
 [connection signal="body_entered" from="Boss/Right/Laser/Hitbox" to="Boss/Right/Laser" method="_on_Hitbox_body_entered"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]

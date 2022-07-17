@@ -1,6 +1,6 @@
 extends Node2D
 
-var enemy = load("res://Scenes/2D/Enemy.tscn")
+var enemy = load("res://Scenes/2D/EnemyRanged.tscn")
 var current_enemy
 
 func _on_SpawnTimer_timeout():

@@ -19,16 +19,24 @@ var idle = true
 var body_idle = true
 var left_idle = true
 var right_idle = true
-var test = false
+var rng = RandomNumberGenerator.new()
+var attacks = [
+	"Rapid Fire Laser Track",
+	"Rapid Fire Laser LR",
+	"Rapid Fire Laser RL",
+	"Laser Sweep L"
+]
 
 func _process(delta):
 	
 	attack_cooldown -= delta
 	count += delta * 4
 	
-	if attack_cooldown <= 0 and !test:
-		right.get_node("AnimationPlayer").play("Rapid Fire Laser")
-		test = true
+	if attack_cooldown <= 0:
+		rng.randomize()
+		var val = rng.randi_range(0, 3)
+		right.get_node("AnimationPlayer").play(attacks[val])
+		attack_cooldown = 10
 
 	idle()
 
