@@ -41,4 +41,7 @@ func _physics_process(delta):
 
 func _on_Hitbox_body_entered(body):
 	if body.is_in_group("enemy") and rolling:
+		linear_velocity = -linear_velocity / 3
+		angular_velocity = angular_velocity / 3
 		body.death()
+		rolling = false
