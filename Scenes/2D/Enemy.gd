@@ -2,11 +2,12 @@ extends KinematicBody2D
 
 export (float) var attack_distance = 100
 export (float) var attack_cooldown = 3
+export (float) var spawn_attack_cooldown = 0.5
 export (float) var attack_time = 0.75
 export (float) var attack_speed = 125
 export (float) var wander_speed = 50
 var attack_delta  = 0
-var color = null
+var color = 1
 var wander_direction = 1
 var attacking = false
 var velocity = Vector2()
@@ -14,6 +15,7 @@ onready var player = get_parent().get_node("Player")
 onready var anim = $AnimationPlayer
 
 func _ready():
+	attack_delta = spawn_attack_cooldown
 	change_wander()
 	
 func change_wander():

@@ -43,7 +43,7 @@ func get_input():
 			stored_die = active_die.dice_val
 			active_die.queue_free()
 			active_die = null
-			
+
 	return input_velocity.normalized() * speed
 	
 func _physics_process(delta):
@@ -57,7 +57,8 @@ func take_damage(damage):
 		
 	if life_points <= 0:
 		game_over()
-	
+func combo_attack(dice1, dice2):
+	pass
 func game_over():
 	print("Dead")
 

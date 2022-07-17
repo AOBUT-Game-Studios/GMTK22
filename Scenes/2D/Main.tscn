@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://Assets/tilemapppp.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/2D/Player.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Scenes/2D/Boss.gd" type="Script" id=10]
 [ext_resource path="res://Assets/bosseye.png" type="Texture" id=11]
 [ext_resource path="res://Assets/eyemask.png" type="Texture" id=12]
+[ext_resource path="res://Scenes/2D/Main.gd" type="Script" id=13]
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -551,7 +552,10 @@ animations = [ {
 "speed": 4.0
 } ]
 
+[sub_resource type="CircleShape2D" id=36]
+
 [node name="Main" type="Node2D"]
+script = ExtResource( 13 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
@@ -597,7 +601,6 @@ texture = ExtResource( 11 )
 
 [node name="Iris" type="Sprite" parent="Boss/Body/Eye"]
 position = Vector2( 2.5, 7.50001 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 8 )
 
 [node name="Eyelid" type="AnimatedSprite" parent="Boss/Body/Eye"]
@@ -606,21 +609,81 @@ frames = SubResource( 35 )
 
 [node name="Eyemask" type="Sprite" parent="Boss/Body/Eye"]
 visible = false
-scale = Vector2( 1, 1 )
 texture = ExtResource( 12 )
 
 [node name="Right" type="AnimatedSprite" parent="Boss"]
 position = Vector2( -113, -78 )
 frames = SubResource( 25 )
-frame = 3
+frame = 1
 playing = true
 
 [node name="Left" type="AnimatedSprite" parent="Boss"]
 position = Vector2( 193, 19 )
 rotation = -0.207712
 frames = SubResource( 30 )
+frame = 2
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Boss"]
 
 [node name="Tween" type="Tween" parent="Boss"]
+
+[node name="Spawn1" type="Area2D" parent="."]
+position = Vector2( -78, 89 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawn1"]
+shape = SubResource( 36 )
+
+[node name="Spawn2" type="Area2D" parent="."]
+position = Vector2( -78, 25 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawn2"]
+shape = SubResource( 36 )
+
+[node name="Spawn3" type="Area2D" parent="."]
+position = Vector2( 0, 20 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawn3"]
+shape = SubResource( 36 )
+
+[node name="Spawn4" type="Area2D" parent="."]
+position = Vector2( 78, 91 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawn4"]
+shape = SubResource( 36 )
+
+[node name="Spawn5" type="Area2D" parent="."]
+position = Vector2( -1, 90 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawn5"]
+shape = SubResource( 36 )
+
+[node name="Spawn6" type="Area2D" parent="."]
+position = Vector2( -78, -36 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawn6"]
+shape = SubResource( 36 )
+
+[node name="Spawn7" type="Area2D" parent="."]
+position = Vector2( 75, -35 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawn7"]
+shape = SubResource( 36 )
+
+[node name="Spawn8" type="Area2D" parent="."]
+position = Vector2( 0, -35 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawn8"]
+shape = SubResource( 36 )
+
+[node name="Spawn9" type="Area2D" parent="."]
+position = Vector2( 77, 21 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawn9"]
+shape = SubResource( 36 )
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
