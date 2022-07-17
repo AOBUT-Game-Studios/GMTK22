@@ -762,7 +762,6 @@ texture = ExtResource( 12 )
 [node name="Right" type="AnimatedSprite" parent="Boss"]
 position = Vector2( -113, -78 )
 frames = SubResource( 25 )
-frame = 2
 playing = true
 script = ExtResource( 17 )
 idle = false
@@ -817,7 +816,6 @@ shape = SubResource( 42 )
 position = Vector2( 193, 19 )
 rotation = -0.207712
 frames = SubResource( 30 )
-frame = 2
 playing = true
 
 [node name="Spawners" type="Node2D" parent="."]

@@ -17,13 +17,13 @@ func idle():
 	global_position.x = get_parent().get_node("Body").global_position.x / 2  + (-100) + (cos(count) * 2)
 
 func raise_hand():
-	global_position.y -= 25
+	#global_position.y -= 25
 	animation = "attack"
 	playing = false
 	#get_node("Right/Laser").enabled(true)
 	
 func lower_hand():
-	global_position.y += 25
+	#global_position.y += 25
 	animation = "default"
 	playing = true
 	

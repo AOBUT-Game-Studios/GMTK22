@@ -12,6 +12,7 @@ var stored_die = null
 export (bool) var invincible = false
 
 onready var anim = $AnimationPlayer
+onready var tween = $Tween
 
 func _unhandled_input(event):
 	pass
@@ -43,6 +44,8 @@ func get_input():
 			stored_die = active_die.dice_val
 			active_die.queue_free()
 			active_die = null
+		elif active_die != null and stored_die != null:
+			combo_attack(stored_die, active_die.dice_val)
 
 	return input_velocity.normalized() * speed
 	
@@ -59,7 +62,16 @@ func take_damage(damage):
 		game_over()
 		
 func combo_attack(dice1, dice2):
-	pass
+	#0 : blue
+	#1 : Red
+	#2 : Yellow
+	tween.interpolate_property(self, "global_position:y",
+		global_position.y, global_position.y + 10, 0.5,
+		Tween.TRANS_CUBIC, Tween.EASE_OUT)
+	tween.start()
+	get_node("ComboDice/ComboDie").frame_coords.x = dice1
+	get_node("ComboDice/ComboDie2").frame_coords.x = dice2
+	anim.play("Combo")
 
 func game_over():
 	print("Dead")
