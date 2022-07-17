@@ -57,8 +57,10 @@ func take_damage(damage):
 		
 	if life_points <= 0:
 		game_over()
+		
 func combo_attack(dice1, dice2):
 	pass
+
 func game_over():
 	print("Dead")
 

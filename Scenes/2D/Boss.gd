@@ -13,26 +13,43 @@ export (float) var left_offset = 0
 export (float) var movement_damp = 10
 export (float) var head_bob = 10
 export (float) var iris_offset = 5
-var count = 0 
+var count = 0
+var attack_cooldown = 5
+var idle = true
+var body_idle = true
+var left_idle = true
+var right_idle = true
+var test = false
 
 func _process(delta):
-	idle(delta)
-
-
-func idle(delta):
-	#counter for cos wave
+	
+	attack_cooldown -= delta
 	count += delta * 4
 	
-	#Body Movement
-	body.global_position.x = player.global_position.x / 4 + body_offset + (cos(count) * 2)
-	body.global_position.y = body.global_position.y + (cos(count) / 14)
+	if attack_cooldown <= 0 and !test:
+		right.get_node("AnimationPlayer").play("Rapid Fire Laser")
+		test = true
 
-	#Right Hand Follows Body
-	right.global_position.x = body.global_position.x / 2 + right_offset + (cos(count) * 2)
+	idle()
+
+func idle():
+	#counter for cos wave
 	
+	#Body Movement
+	if body_idle:
+		body.global_position.x = player.global_position.x / 4 + body_offset + (cos(count) * 2)
+		body.global_position.y = body.global_position.y + (cos(count) / 14)
+
 	#Left Hand Movement
-	left.global_position.y = player.global_position.y / 3 + left_offset + (cos(count) * 2)
+	if left_idle:
+		left.global_position.y = player.global_position.y / 3 + left_offset + (cos(count) * 2)
 	
 	#iris movement
 	iris.position.x = player.position.x / 16
 	iris.position.y = player.position.y / 24 + iris_offset
+	
+
+	
+
+	
+	
